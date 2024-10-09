@@ -18,16 +18,22 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView i_player;
     private ImageView i_bot;
-    private TextView tv_player;
-    private TextView tv_bot;
-    private TextView tv_results;
+    private ImageView i_b_h1;
+    private ImageView i_b_h2;
+    private ImageView i_b_h3;
+    private ImageView i_p_h1;
+    private ImageView i_p_h2;
+    private ImageView i_p_h3;
+    private TextView tv_tie;
     private Button b_ko;
     private Button b_papir;
     private Button b_ollo;
+
     private Random random;
     private int guess;
     private int player;
     private int bot;
+    private int tie;
     private AlertDialog alertDialog;
     
     @Override
@@ -44,16 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 if(guess == 0){
                     i_bot.setImageResource(R.drawable.rock);
                     Toast.makeText(MainActivity.this, "Döntetlen!", Toast.LENGTH_SHORT).show();
+                    tie++;
                 }else if(guess == 1){
                     i_bot.setImageResource(R.drawable.paper);
                     Toast.makeText(MainActivity.this, "A gép nyert!", Toast.LENGTH_SHORT).show();
                     bot++;
+                    heartloss_p();
                 }else if(guess == 2){
                     i_bot.setImageResource(R.drawable.scissors);
                     Toast.makeText(MainActivity.this, "A játékos nyert!", Toast.LENGTH_SHORT).show();
                     player++;
+                    heartloss_b();
                 }
-                tv_results.setText("Eredmény: Ember: "+player+" Computer: "+bot);
+
+                tv_tie.setText("Döntetlenek száma: "+tie);
                 if(player == 3 || bot == 3){
                     GG();
                 }
@@ -68,15 +78,19 @@ public class MainActivity extends AppCompatActivity {
                     i_bot.setImageResource(R.drawable.rock);
                     Toast.makeText(MainActivity.this, "A játékos nyert!", Toast.LENGTH_SHORT).show();
                     player++;
+                    heartloss_b();
                 }else if(guess == 1){
                     i_bot.setImageResource(R.drawable.paper);
                     Toast.makeText(MainActivity.this, "Döntetlen!", Toast.LENGTH_SHORT).show();
+                    tie++;
                 }else if(guess == 2){
                     i_bot.setImageResource(R.drawable.scissors);
                     Toast.makeText(MainActivity.this, "A gép nyert!", Toast.LENGTH_SHORT).show();
                     bot++;
+                    heartloss_p();
                 }
-                tv_results.setText("Eredmény: Ember: "+player+" Computer: "+bot);
+
+                tv_tie.setText("Döntetlenek száma: "+tie);
                 if(player == 3 || bot == 3){
                     GG();
                 }
@@ -91,18 +105,19 @@ public class MainActivity extends AppCompatActivity {
                     i_bot.setImageResource(R.drawable.rock);
                     Toast.makeText(MainActivity.this, "A gép nyert!", Toast.LENGTH_SHORT).show();
                     bot++;
+                    heartloss_p();
                 }else if(guess == 1){
                     i_bot.setImageResource(R.drawable.paper);
                     Toast.makeText(MainActivity.this, "A játékos nyert!", Toast.LENGTH_SHORT).show();
                     player++;
+                    heartloss_b();
                 }else if(guess == 2){
                     i_bot.setImageResource(R.drawable.scissors);
                     Toast.makeText(MainActivity.this, "Döntetlen!", Toast.LENGTH_SHORT).show();
+                    tie++;
                 }
-                tv_results.setText("Eredmény: Ember: "+player+" Computer: "+bot);
-                if(player == 3 || bot == 3){
-                    GG();
-                }
+
+                tv_tie.setText("Döntetlenek száma: "+tie);
             }
         });
     }
@@ -119,21 +134,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void heartloss_p(){
+        if(bot== 1){
+            i_p_h1.setImageResource(R.drawable.heart1);
+        }else if(bot == 2){
+            i_p_h2.setImageResource(R.drawable.heart1);
+        }else if(bot == 3){
+            i_p_h3.setImageResource(R.drawable.heart1);
+            GG();
+        }
+    }
+    public void heartloss_b(){
+        if(player== 1){
+            i_b_h3.setImageResource(R.drawable.heart1);
+        }else if(player == 2){
+            i_b_h2.setImageResource(R.drawable.heart1);
+        }else if(player == 3){
+            i_b_h1.setImageResource(R.drawable.heart1);
+            GG();
+        }
+    }
     public void ujJatek(){
         i_player.setImageResource(R.drawable.rock);
         i_bot.setImageResource(R.drawable.rock);
         player = 0;
         bot = 0;
-        tv_results.setText("Eredmény: Ember: "+player+" Computer: "+bot);
+        i_p_h1.setImageResource(R.drawable.heart2);
+        i_p_h2.setImageResource(R.drawable.heart2);
+        i_p_h3.setImageResource(R.drawable.heart2);
+        i_b_h1.setImageResource(R.drawable.heart2);
+        i_b_h2.setImageResource(R.drawable.heart2);
+        i_b_h3.setImageResource(R.drawable.heart2);
+        tie = 0;
+        tv_tie.setText("Döntetlenek száma: "+tie);
 
     }
 
     public void init(){
         i_player = findViewById(R.id.i_player);
         i_bot = findViewById(R.id.i_bot);
-        tv_player = findViewById(R.id.tv_player);
-        tv_bot = findViewById(R.id.tv_bot);
-        tv_results = findViewById(R.id.tv_results);
         b_ko = findViewById(R.id.b_ko);
         b_ollo = findViewById(R.id.b_ollo);
         b_papir = findViewById(R.id.b_papir);
@@ -141,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
         guess = random.nextInt(3);
         player = 0;
         bot = 0;
+        tie = 0;
+        i_p_h1 = findViewById(R.id.i_p_h1);
+        i_p_h2 = findViewById(R.id.i_p_h2);
+        i_p_h3 = findViewById(R.id.i_p_h3);
+        i_b_h1 = findViewById(R.id.i_b_h1);
+        i_b_h2 = findViewById(R.id.i_b_h2);
+        i_b_h3 = findViewById(R.id.i_b_h3);
+        tv_tie = findViewById(R.id.tv_tie);
         alertDialog = new android.app.AlertDialog.Builder(this).
                 setTitle("Játék vége").
                 setMessage("Szeretnél e új játékot?").

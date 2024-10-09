@@ -7,6 +7,69 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="start">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_b_h1"
+            android:src="@drawable/heart2"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_b_h2"
+            android:src="@drawable/heart2"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_b_h3"
+            android:src="@drawable/heart2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gép"
+            android:textSize="24dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:gravity="end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Játékos"
+            android:textSize="24dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_p_h1"
+            android:src="@drawable/heart2"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_p_h2"
+            android:src="@drawable/heart2"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/i_p_h3"
+            android:src="@drawable/heart2"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Döntetlenek száma: 0"
+        android:layout_centerInParent="true"
+        android:textSize="24dp"
+        android:id="@+id/tv_tie"
+        android:layout_above="@+id/i_player"/>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -35,19 +98,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/tv_results"
+        android:layout_above="@+id/ll_buttons"
         android:textSize="24sp"
         android:id="@+id/tv_bot"
         android:text="A gép választása"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="20sp"
-        android:id="@+id/tv_results"
-        android:layout_above="@+id/ll_buttons"
-        android:text="Eredmény: Ember: 0 Computer: 0"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,28 +113,29 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/ll_buttons">
         <Button
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/b_ko"
-            android:text="KŐ"
             android:textSize="22sp"
             android:layout_margin="10dp"
+            android:background="@drawable/rock"
             />
         <Button
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/b_papir"
-            android:text="PAPÍR"
             android:textSize="22sp"
             android:layout_margin="10dp"
+            android:background="@drawable/paper"
             />
         <Button
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/b_ollo"
-            android:text="OLLÓ"
             android:textSize="22sp"
             android:layout_margin="10dp"
+            android:background="@drawable/scissors"
+
             />
     </LinearLayout>
 
